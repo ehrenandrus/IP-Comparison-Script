@@ -12,7 +12,7 @@ IP_RANGE=fr"{IP_REG}-{IP_REG}"
 array_file1 = []
 array_file2 = []
 
-#assumes IP data are separated by commas
+#assumes IP data are separated by commas or separated with newlines or both
 #strip white space
 def sanitize_data(line):
     return [item.strip(' ') for item in line.split(",")]
