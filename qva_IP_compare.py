@@ -72,19 +72,27 @@ def add_single_IP(item, file_num):
     else:
         array_file2.append(item)
 
-
+#maybe modify with a separate function for printing output, passing in diff_in_arrays
 def sort_and_compare():
     set1 = set(array_file1)
     set2 = set(array_file2)
 
+    #create .gitignore directory
+    git_ignore_directory = ".gitignore"
+    try:
+        os.mkdir(git_ignore_directory)
+        print(f"Creating directory {git_ignore_directory} for output files to avoid accidental pushes to repo.")
+    except FileExistsError:
+        print(f"{git_ignore_directory} directory already exists. Saving output files there to avoid accidental pushes to repo.")
+
     #find unique IPs to file1
     diff_in_array1 = list(set1 - set2)
-    with open(f"unique_ips_in_file1.txt", "w") as f:
+    with open(f"{git_ignore_directory}/unique_ips_in_file1.txt", "w") as f:
         print(f"{', '.join(diff_in_array1)}", file=f)
 
     #find unique IPs to file2
     diff_in_array2 = list(set2 - set1)
-    with open(f"unique_ips_in_file2.txt", "w") as f:
+    with open(f"{git_ignore_directory}/unique_ips_in_file2.txt", "w") as f:
         print(f"{', '.join(diff_in_array2)}", file=f)
 
     #print unique IPs or print everything matches
@@ -99,7 +107,7 @@ def sort_and_compare():
         sorted1 = sorted(set1)
         sorted2 = sorted(set2)
         #print formated matches
-        with open("match.txt", "w") as f:
+        with open(".gitignore/match.txt", "w") as f:
             for i in range(len(sorted1)):
                 print(f"{sorted1[i]}     {sorted2[i]:<20}", file=f)
                 print(f"{sorted1[i]}     {sorted2[i]:<20}")
