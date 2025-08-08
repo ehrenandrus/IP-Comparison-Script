@@ -12,10 +12,14 @@ IP_RANGE=fr"{IP_REG}-{IP_REG}"
 array_file1 = []
 array_file2 = []
 
+
 #assumes IP data are separated by commas or separated with newlines or both
 #strip white space
 def sanitize_data(line):
-    return [item.strip(' ') for item in line.split(",")]
+    if ',' in line:
+        return [item.strip(' ') for item in line.split(",")]
+    else: #assume space separated
+        return [item.strip(' ') for item in line.split(" ")]
 
 
 # individually check if its / or - or single IP and call relevant function to handle
@@ -35,7 +39,7 @@ def parse(item, file_num):
 
 
 def expand_cidr(item, file_num):
-    network = ipaddress.ip_network(f"{item}")
+    network = ipaddress.ip_network(f"{item}", strict=False) #strict=false for if host bit set
     for ip in network:
         if file_num == 1:
             array_file1.append(str(ip))
@@ -103,7 +107,6 @@ def sort_and_compare():
         print(f"These are unique to file 2:\n{diff_in_array2}")
         print("Output printed to unique* files.")
     else:
-        print(f"Everything Matches!! Output printed to match.txt.")
         sorted1 = sorted(set1)
         sorted2 = sorted(set2)
         #print formated matches
@@ -111,7 +114,7 @@ def sort_and_compare():
             for i in range(len(sorted1)):
                 print(f"{sorted1[i]}     {sorted2[i]:<20}", file=f)
                 print(f"{sorted1[i]}     {sorted2[i]:<20}")
-
+        print(f"Everything Matches!! Output printed to match.txt.")
 
 def main():
     if len(sys.argv) == 3:
