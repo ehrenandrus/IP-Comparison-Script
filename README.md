@@ -1,5 +1,5 @@
 This script takes in two files as arguments that contain comma-separated IP addresses or ranges in the formats X.X.X.X/X (CIDR) or X.X.X.X-X.X.X.X. 
-It sanitizes the input and determines if the IPs in each file match. It will print the discrepancies or output all matching IPs. 
+It cleans the input and determines if the IPs in each file match. It will print the discrepancies or output all matching IPs. 
 This is useful for scope validation for vulnerability scans or other assessments.
 
 to install:
