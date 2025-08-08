@@ -17,6 +17,7 @@ array_file2 = []
 def sanitize_data(line):
     return [item.strip(' ') for item in line.split(",")]
 
+
 # individually check if its / or - or single IP and call relevant function to handle
 def parse(item, file_num):
     if "/" in item:
@@ -78,21 +79,21 @@ def sort_and_compare():
 
     #find unique IPs to file1
     diff_in_array1 = list(set1 - set2)
-    with open(f"diff_in_array1.txt", "w") as f:
-        print(f"{diff_in_array1}", file=f)
+    with open(f"unique_ips_in_file1.txt", "w") as f:
+        print(f"{', '.join(diff_in_array1)}", file=f)
 
     #find unique IPs to file2
     diff_in_array2 = list(set2 - set1)
-    with open(f"diff_in_array2.txt", "w") as f:
-        print(f"{diff_in_array2}", file=f)
+    with open(f"unique_ips_in_file2.txt", "w") as f:
+        print(f"{', '.join(diff_in_array2)}", file=f)
 
-    #print unique IPs or print everythign matches
+    #print unique IPs or print everything matches
     if len(diff_in_array2) != 0 or len(diff_in_array1) != 0:
         print(f"These are unique to file 1:\n{diff_in_array1}")
         print(f"***************************")
         print(f"***************************")
         print(f"These are unique to file 2:\n{diff_in_array2}")
-        print("Output printed to diff* files.")
+        print("Output printed to unique* files.")
     else:
         print(f"Everything Matches!! Output printed to match.txt.")
         sorted1 = sorted(set1)
@@ -138,7 +139,6 @@ def main():
         print(f"{file2} does not exist. Please choose existing file.")
 
     sort_and_compare()
-
 
 
 if __name__ == "__main__":
