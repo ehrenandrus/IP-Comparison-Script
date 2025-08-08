@@ -116,25 +116,23 @@ def main():
     # read files
     try:
         with open(file1, "r") as f:
-            line = f.read()
-            # parse data to arrays and strip white spaces
-            arr1 = sanitize_data(line)
-            for item in arr1:
-                parse(item.strip(), 1)
+            for line in f:
+                # parse data to arrays and strip white spaces
+                arr1 = sanitize_data(line)
+                for item in arr1:
+                    parse(item.strip(), 1)
     except FileNotFoundError:
         print(f"{file1} does not exist. Please choose existing file.")
 
     # read files
     try:
         with open(file2, "r") as f:
-            line = f.read()
-            # parse data to arrays and strip white spaces
-            arr2 = sanitize_data(line)
+            for line in f:
+                # parse data to arrays and strip white spaces
+                arr2 = sanitize_data(line)
 
-            for item in arr2:
-                parse(item.strip(), 2)
-
-
+                for item in arr2:
+                    parse(item.strip(), 2)
     except FileNotFoundError:
         print(f"{file2} does not exist. Please choose existing file.")
 
