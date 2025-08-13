@@ -16,10 +16,7 @@ array_file2 = []
 #assumes IP data are separated by commas or separated with newlines or both
 #strip white space
 def sanitize_data(line):
-    if ',' in line:
-        return [item.strip(' ') for item in line.split(",")]
-    else: #assume space separated
-        return [item.strip(' ') for item in line.split(" ")]
+    return [item.strip(' ') for item in re.split(r'[ ,]+', line)]
 
 
 # individually check if its / or - or single IP and call relevant function to handle
