@@ -16,4 +16,4 @@ Usage:
 source venv/bin/activate #call venv\Scripts\activate
 python qva_IP_compare.py file1 file2
 
-deactivate #when done
+deactivate #when done deactivate virtual environment
