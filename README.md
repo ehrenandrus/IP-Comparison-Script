@@ -6,9 +6,14 @@ to install:
 
 git clone https://www.github.com/ehrenandrus/IP-Comparison-Script.git
 cd IP-Comparison-Script
-python -m venv .venv
-source ./.venv/bin/activate
-pip install -r requirements.txt
+./setup.sh  # or setup.bat on Windows
+
 
 Usage:
+
+#in repo directory
+#activate virtual environment first (activated during setup)
+source venv/bin/activate #call venv\Scripts\activate
 python qva_IP_compare.py file1 file2
+
+deactivate #when done
