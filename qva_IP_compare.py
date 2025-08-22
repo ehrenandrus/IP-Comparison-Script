@@ -5,6 +5,7 @@ from netaddr import iter_nmap_range
 import os
 
 #to do more error checking
+#figure out a way to accomodate x.x.x.x - x.x.x.x and not just x.x.x.x-x.x.x.x The issue is that I split on spaces or commas
 
 IP_REG=r"^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$"
 IP_RANGE=fr"{IP_REG}-{IP_REG}"
