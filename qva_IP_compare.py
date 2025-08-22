@@ -101,7 +101,7 @@ def sort_and_compare():
         sorted1 = sorted(set1)
         sorted2 = sorted(set2)
         #print formated matches
-        with open(".gitignore/match.txt", "w") as f:
+        with open(f"{out}/match.txt", "w") as f:
             for i in range(len(sorted1)):
                 print(f"{sorted1[i]}     {sorted2[i]:<20}", file=f)
                 print(f"{sorted1[i]}     {sorted2[i]:<20}")
