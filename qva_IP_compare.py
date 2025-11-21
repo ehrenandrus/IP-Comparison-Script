@@ -23,18 +23,31 @@ def sanitize_data(line):
 # individually check if its / or - or single IP and call relevant function to handle
 def parse(item, file_num):
     if "/" in item:
-        # handle expansion function
-        expand_cidr(item, file_num)
+        try:
+            # handle expansion function
+            expand_cidr(item, file_num)
+        except Exception as e:
+            print(f"Incorrect IP range/address format: {item}")
+            print(f"Exception = {e}")
     elif "-" in item:
-        # handle expansion function
-        expand_range(item, file_num)
+        try:
+            # handle expansion function
+            expand_range(item, file_num)
+        except Exception as e:
+            print(f"Incorrect IP range/address format: {item}")
+            print(f"Exception = {e}")
     elif re.match(IP_REG, item): #if reg IP
-        #add to list
-        add_single_IP(item, file_num)
+        try:
+            #add to list
+            add_single_IP(item, file_num)
+        except Exception as e:
+            print(f"Incorrect IP format: {item}")
+            print(f"Exception = {e}")
+    elif item == "":
+        print(f"Error in parsing function... {item} - if there is nothing between the ... and - then it's just a blank item and you can continue without worry.")
     else:
-        print(f"Incorrect IP range/address format: {item}")
+        print(f"Unknown error in parse function. Contact your developer...")
         sys.exit(1)
-
 
 def expand_cidr(item, file_num):
     network = ipaddress.ip_network(f"{item}", strict=False) #strict=false for if host bit set
